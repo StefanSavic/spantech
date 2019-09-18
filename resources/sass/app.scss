@@ -1,0 +1,231 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+*:focus {
+    outline: none !important;
+}
+
+@media only screen and (min-width:1200px) {
+
+    .content-wrapper {
+        min-height: 100vh;
+    }
+}
+
+html,
+body {
+    background-color: #fff;
+    // background-color: red;
+    // color: green;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 200;
+    height: 100vh;
+    margin: 0;
+    color: #505354 !important;
+}
+
+.full-height {
+    height: 100vh;
+}
+
+.flex-center {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.position-ref {
+    position: relative;
+}
+
+.top-right {
+    position: absolute;
+    right: 10px;
+    top: 18px;
+}
+
+.content {
+    text-align: center;
+}
+
+.title {
+    font-size: 84px;
+}
+
+.links>a {
+    color: #636b6f;
+    padding: 0 25px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.m-b-md {
+    margin-bottom: 30px;
+}
+
+.navbar-brand {
+    width: 10%;
+}
+
+.table th {
+    max-width: 250px;
+}
+
+
+// SEARCH BAR
+
+
+.search-bar {
+    z-index: 2;
+    margin-left: 40px;
+    width: 56%;
+    margin: 1em 0;
+    transform: translateX(15%);
+
+    .search-wrapper {
+        width: 70%;
+        position: relative;
+    }
+
+    input {
+        position: relative;
+        text-indent: 30px;
+        height: 35px;
+        width: 100%;
+        margin: auto;
+        z-index: 98;
+        border: 1px solid #585857;
+        // box-shadow: 1px 1px 1px 1px #585857;
+    }
+
+    ul {
+        color: #585857;
+        // transform: translateY(-1px);
+        overflow-y: hidden;
+        border: 1px solid #585857;
+        // border:1px solid #eee;
+        // border:1px solid black;
+        // box-shadow: 1px 1px 1px 1px #585857;
+
+        max-height: 80vh;
+        padding: 0;
+        border-top: none;
+        z-index: 999;
+        background: white;
+        position: absolute;
+        // left: 16%;
+        width: 100%;
+
+        // margin-left: 17%;
+        li {
+            &:focus {
+                background: green;
+            }
+
+            font-size: 0.9em;
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5em 1em;
+            transition: all 0.3s ease;
+            flex-wrap: wrap;
+            border-bottom: 1px solid rgba(88, 88, 87, 0.1);
+
+            &:hover,
+            &.is-active {
+                background: #bbbdbf !important;
+                color: black !important;
+            }
+
+            span {
+                flex-basis: 33%;
+                flex-flow: 1;
+            }
+
+            a {
+                display: flex;
+                justify-content: space-around;
+                width: 100%;
+
+                span {
+                    flex-basis: 0;
+                    flex-grow: 1;
+                }
+            }
+        }
+    }
+
+    a {
+        color: #585857;
+        transition: all 0.3s ease;
+
+        &:hover {
+            color: white;
+        }
+    }
+
+    @media only screen and (max-width: 1024px) {
+        ul {}
+    }
+}
+
+.fa-search {
+    z-index: 99;
+    position: absolute;
+    top: 11px;
+    left: 10px;
+    // right: 300px;
+    // margin: 0 5px;
+    // position: absolute;
+    // top:14px;
+    // right: 16%;
+    // margin:0 3px;
+    // left: 20px;
+    color: #585857;
+}
+
+.device-img {
+    max-height: 83px;
+    max-width: 50px;
+}
+
+@media only screen and (max-width: 425px) {
+    .search-bar {
+        // margin-left: 40px;
+        width: 100%;
+        -webkit-transform: none;
+        transform: none;
+    }
+
+    .search-bar ul li {
+        flex-direction: column;
+        // flex-wrap: wrap;
+    }
+}
+
+@media screen and (max-width: 1209px) {
+    .search-bar ul li {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+
+
+// table
+
+table {
+    // color: #505354 !important;
+}
+
+.counter-table {
+    min-width: 122px;
+}
