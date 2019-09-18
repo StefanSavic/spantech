@@ -36,6 +36,6 @@ class BasketController extends Controller
         // dump(json_decode($sensors,true));
         // dump($data);
         
-        \Mail::to('test@test.com')->send(new BasketEmail($data));
+        \Mail::to('stevjah11@gmail.com')->send(new BasketEmail($data));
     }
 }
