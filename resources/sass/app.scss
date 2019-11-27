@@ -1,5 +1,7 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Dosis|Quicksand&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,600,800&display=swap" rel="stylesheet"');
 
 // Variables
 @import 'variables';
@@ -14,7 +16,7 @@
 @media only screen and (min-width:1200px) {
 
     .content-wrapper {
-        min-height: 100vh;
+        min-height: 91vh;
     }
 }
 
@@ -23,11 +25,13 @@ body {
     background-color: #fff;
     // background-color: red;
     // color: green;
-    font-family: 'Nunito', sans-serif;
+    // font-family: 'Nunito', sans-serif;
+    font-family: $font-family-sans-serif;
     font-weight: 200;
     height: 100vh;
     margin: 0;
     color: #505354 !important;
+    overflow-x: hidden !important;
 }
 
 .full-height {
@@ -78,6 +82,7 @@ body {
 
 .table th {
     max-width: 250px;
+    text-transform: capitalize;
 }
 
 
@@ -89,7 +94,8 @@ body {
     margin-left: 40px;
     width: 56%;
     margin: 1em 0;
-    transform: translateX(15%);
+    // transform: translateX(15%);
+    transform: translateX(21%);
 
     .search-wrapper {
         width: 70%;
@@ -174,7 +180,12 @@ body {
 
     @media only screen and (max-width: 1024px) {
         ul {}
+
     }
+}
+
+.container {
+    max-width: 1351px !important;
 }
 
 .fa-search {
@@ -228,4 +239,8 @@ table {
 
 .counter-table {
     min-width: 122px;
+}
+
+.content-wrapper {
+    margin-top: 4em;
 }

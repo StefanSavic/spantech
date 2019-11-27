@@ -30,9 +30,9 @@ class BasketEmail extends Mailable
     public function build()
     {
         
-        $address = 'doe@example.com';
+        $address = 'spantech.com@example.com';
         $subject = 'New Enquiry Request';
-        $name ='Jane Doe';
+        $name ='Spantech';
 
         return $this->markdown('emails.basket')
                     ->from($address,$name)

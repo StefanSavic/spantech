@@ -1,26 +1,27 @@
 <template>
   <div class="container">
     <img class="logo d-flex my-2" src="/img/logo.svg" alt />
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio sunt nobis impedit labore magni numquam maiores sint tempore quae minima.</p>
     <!-- <div class="big-logo"></div> -->
     <caroucel :images="images"></caroucel>
-    <!-- <div class="sensors"> -->
-    <!-- <div class="sensor2"></div> -->
+    <div class="sensors">
+      <!-- <div class="sensor2"></div> -->
 
-    <!-- <div class="links">
-      <a href="/gas-sensors" variant="danger">
-        <button class="btn red" variant="danger">Gas Sensors</button>
-      </a>
-      <a href="/calibration-gas" variant="danger">
-        <button class="btn red" variant="danger">Calibration Gas</button>
-      </a>
-      <a href="/calibration-instruments" variant="danger">
-        <button class="btn red" variant="danger">Calibration instruments</button>
-      </a>
-      <a href="/rare-gas-purifiers" variant="danger">
-        <button class="btn red" variant="danger">Rare gas purifiers</button>
-      </a>
-    </div>-->
-    <!-- </div> -->
+      <div class="links">
+        <a href="/gas-sensors" variant="danger">
+          <button class="btn red" variant="danger">Gas Sensors</button>
+        </a>
+        <a href="/calibration-gas" variant="danger">
+          <button class="btn red" variant="danger">Calibration Gas</button>
+        </a>
+        <a href="/calibration-instruments" variant="danger">
+          <button class="btn red" variant="danger">Calibration instruments</button>
+        </a>
+        <a href="/rare-gas-purifiers" variant="danger">
+          <button class="btn red" variant="danger">Rare gas purifiers</button>
+        </a>
+      </div>
+    </div>
 
     <!-- <img src="../assets/img/sensor1.png" alt=""> -->
     <!-- <img src="../assets/img/sensor1.png" alt=""> -->
@@ -67,6 +68,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+p {
+  text-align: center;
+}
 .logo {
   width: 60%;
   margin: 0 auto;
@@ -86,7 +90,7 @@ export default {
 // }
 .sensors {
   display: flex;
-  max-width: 600px;
+  max-width: 555px;
   margin: auto;
   flex-direction: column;
   justify-content: center;
@@ -94,10 +98,10 @@ export default {
   .links {
     margin-top: 5em;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
-    max-width: 500px;
-    margin: 5em auto;
+    // max-width: 500px;
+    // margin: 5em auto;
     a {
       button {
         min-width: 220px;
@@ -106,7 +110,9 @@ export default {
     }
   }
 }
-
+// .container {
+//   margin-top: 4em;
+// }
 .sensor2 {
   // width: 300px;
   // height: 172px;

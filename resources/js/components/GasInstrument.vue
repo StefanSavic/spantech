@@ -4,7 +4,11 @@
     <p
       my-2
     >To add instrument with options and source that you want, just click on conresponding table cell and instrument will be added.</p>
-    <!-- {{product[0]}} -->
+    <div class="alert-wrapper">
+      <div v-if="alert" class="alert red fade show" role="alert">That product is unavilable</div>
+      <div v-if="alertSuccess" class="alert alert-success m-0" role="alert">Product is in the basket</div>
+      <!-- {{product[0]}} -->
+    </div>
     <table class="table table-bordered table-hover">
       <thead>
         <tr>
@@ -59,8 +63,8 @@
           <td @click="addToBasket(g,'cal2000lt',$event)">
             <span>{{g.cal2000lt}}</span>
           </td>
-          <td @click="addToBasket(g,'genie101',$event)">
-            <span>{{g.genie}}</span>
+          <td @click="addToBasket(g,'cal101',$event)">
+            <span>{{g.cal101}}</span>
           </td>
           <td @click="addToBasket(g,'minibump',$event)">
             <span>{{g.minibump}}</span>
@@ -83,19 +87,117 @@
         </tr>
       </tbody>
     </table>
+    <div class="instruments-table--responsive">
+      <img src="/img/cal2000.jpg" alt />
+      <h3>Cal2000</h3>
+      <div class="instruments-table__content" v-for="(g,i) in gases" :key="i">
+        <span class="instuments-table__gas">{{g.name}}:</span>
+        <span v-if="g.cal2000" class="instuments-table-name">{{g.cal2000}}</span>
+        <span v-else class="instuments-table-name">no product</span>
+        <span class="instruments-table__content__button">
+          <button
+            @click="addToBasketResponsive(g.name,'cal2000',g.cal2000)"
+            v-if="g.cal2000"
+            class="red btn"
+          >add</button>
+        </span>
+      </div>
+      <hr />
+      <h3>
+        Cal2000lt
+        <img src="/img/cal2000lt.jpg" alt />
+      </h3>
+      <div class="instruments-table__content" v-for="(g,i) in gases" :key="i">
+        <span class="instuments-table__gas">{{g.name}}:</span>
+        <span v-if="g.cal2000lt" class="instuments-table-name">{{g.cal2000lt}}</span>
+        <span v-else class="instuments-table-name">no product</span>
+        <span class="instruments-table__content__button">
+          <button v-if="g.cal2000lt" class="red btn">add</button>
+        </span>
+      </div>
+      <hr />
+      <h3>
+        Cal101
+        <img src="/img/cal101.jpg" alt />
+      </h3>
+      <div class="instruments-table__content" v-for="(g,i) in gases" :key="i">
+        <span class="instuments-table__gas">{{g.name}}:</span>
+        <span v-if="g.genie" class="instuments-table-name">{{g.cal101}}</span>
+        <span v-else class="instuments-table-name">no product</span>
+        <span class="instruments-table__content__button">
+          <button v-if="g.genie" class="red btn">add</button>
+        </span>
+      </div>
+      <hr />
+      <h3>
+        GenieO3
+        <img src="/img/genieO3.jpg" alt />
+      </h3>
+      <div class="instruments-table__content" v-for="(g,i) in gases" :key="i">
+        <span class="instuments-table__gas">{{g.name}}:</span>
+        <span v-if="g.genieO3" class="instuments-table-name">{{g.genieO3}}</span>
+        <span v-else class="instuments-table-name">no product</span>
+        <span class="instruments-table__content__button">
+          <button v-if="g.genieO3" class="red btn">add</button>
+        </span>
+      </div>
+      <hr />
+      <h3>
+        GenieQC
+        <img src="/img/genieQC.jpg" alt />
+      </h3>
+      <div class="instruments-table__content" v-for="(g,i) in gases" :key="i">
+        <span class="instuments-table__gas">{{g.name}}:</span>
+        <span v-if="g.genieQC" class="instuments-table-name">{{g.genieQC}}</span>
+        <span v-else class="instuments-table-name">no product</span>
+        <span class="instruments-table__content__button">
+          <button v-if="g.genieQC" class="red btn">add</button>
+        </span>
+      </div>
+      <hr />
+      <h3>
+        qc100
+        <img src="/img/qc100.jpg" alt />
+      </h3>
+      <div class="instruments-table__content" v-for="(g,i) in gases" :key="i">
+        <span class="instuments-table__gas">{{g.name}}:</span>
+        <span v-if="g.qc100" class="instuments-table-name">{{g.qc100}}</span>
+        <span v-else class="instuments-table-name">no product</span>
+        <span class="instruments-table__content__button">
+          <button v-if="g.qc100" class="red btn">add</button>
+        </span>
+      </div>
+      <hr />
+      <h3>
+        qc
+        <img src="/img/qc.jpg" alt />
+      </h3>
+      <div class="instruments-table__content" v-for="(g,i) in gases" :key="i">
+        <span class="instuments-table__gas">{{g.name}}:</span>
+        <span v-if="g.qc" class="instuments-table-name">{{g.qc}}</span>
+        <span v-else class="instuments-table-name">no product</span>
+        <span class="instruments-table__content__button">
+          <button v-if="g.qc" class="red btn">add</button>
+        </span>
+      </div>
+      <hr />
+    </div>
   </div>
 </template>
 
 <script>
+import { timeout } from "q";
 export default {
   data() {
     return {
+      alert: false,
+      alertSuccess: false,
       gases: [
         {
           name: "ammonia",
           cal2000: "",
           cal2000lt: "",
-          genie: "",
+          cal101: "",
           minibump: "",
           genieEC: "",
           genieO3: "",
@@ -107,11 +209,11 @@ export default {
           name: "chlorine",
           cal2000: ".05 or .5 - 50PPM",
           cal2000lt: "1 - 25PPM",
-          genie: "1 - 25PPM",
+          cal101: "1 - 25PPM",
           minibump: "1 - 25PPM < 5PPM",
           genieEC: ".05 -5 or .5 -50",
           genieO3: "",
-          genieQc: "",
+          genieQC: "",
           qc100: "",
           qc: ""
         },
@@ -119,11 +221,11 @@ export default {
           name: "chlorine-dioxide",
           cal2000: ".5 - 5PPM",
           cal2000lt: "",
-          genie: "",
-          minibump: " ",
+          cal101: "",
+          minibump: "",
           genieEC: ".5 - 5PPM",
           genieO3: "",
-          genieQc: "",
+          genieQC: "",
           qc100: "",
           qc: ""
         },
@@ -131,11 +233,11 @@ export default {
           name: "hexane",
           cal2000: "",
           cal2000lt: "",
-          genie: "",
+          cal101: "",
           minibump: " ",
           genieEC: "",
           genieO3: "",
-          genieQc: "",
+          genieQC: "",
           qc100: "Bump Test",
           qc: "Bump Test"
         },
@@ -143,11 +245,11 @@ export default {
           name: "hydrogen",
           cal2000: ".05 or .5 - 50PPM",
           cal2000lt: "1 - 25PPM",
-          genie: "1 - 25PPM",
+          cal101: "1 - 25PPM",
           minibump: "1 - 25PPM > 25PPM",
           genieEC: ".05 - 5 or .5 - 500",
           genieO3: "",
-          genieQc: "",
+          genieQC: "",
           qc100: "",
           qc: ""
         },
@@ -155,11 +257,11 @@ export default {
           name: "hydrogen chloride",
           cal2000: "",
           cal2000lt: "",
-          genie: "",
+          cal101: "",
           minibump: " ",
           genieEC: "",
           genieO3: "",
-          genieQc: "",
+          genieQC: "",
           qc100: "Bump Test",
           qc: "Bump Test"
         },
@@ -167,11 +269,11 @@ export default {
           name: "hydrogen cyanide",
           cal2000: ".05 or .5 - 50PPM",
           cal2000lt: "1 - 25PPM",
-          genie: "1 - 25PPM",
+          cal101: "1 - 25PPM",
           minibump: "1 - 25PPM > 10PPM",
           genieEC: ".05 - 5 or .5 - 50PPM",
           genieO3: "",
-          genieQc: "",
+          genieQC: "",
           qc100: "",
           qc: ""
         },
@@ -179,11 +281,11 @@ export default {
           name: "hydrogen sulfide",
           cal2000: ".05 or .5 - 50PPM",
           cal2000lt: "1 - 25PPM",
-          genie: "1 - 25PPM",
+          cal101: "1 - 25PPM",
           minibump: "1 - 25PPM > 25PPM",
           genieEC: ".05 - 5 or .5 - 50PPM",
           genieO3: "",
-          genieQc: "",
+          genieQC: "",
           qc100: "",
           qc: ""
         },
@@ -191,11 +293,11 @@ export default {
           name: "ozone",
           cal2000: "",
           cal2000lt: "",
-          genie: "",
+          cal101: "",
           minibump: "",
           genieEC: "",
           genieO3: ".2-1PPM",
-          genieQc: "",
+          genieQC: "",
           qc100: "",
           qc: ""
         },
@@ -203,11 +305,11 @@ export default {
           name: "toulene",
           cal2000: "",
           cal2000lt: "",
-          genie: "",
+          cal101: "",
           minibump: "",
           genieEC: "",
           genieO3: "",
-          genieQc: "",
+          genieQC: "",
           qc100: "Bump Test",
           qc: "Bump Test"
         }
@@ -215,17 +317,53 @@ export default {
     };
   },
   methods: {
-    addToBasket(data, instrument, $event) {
+    addToBasketResponsive(gasName, instrument, source) {
+      // var self = this;
       var options = {
         productName: instrument,
-        gas: data.name,
-        details: $event.target.innerText,
+        gas: gasName,
+        details: source,
         ordNum: 1,
         type: "instrument",
-        stylesheet: " "
+        stylesheet: ""
       };
 
       this.$store.dispatch("addToCart", options);
+      // this.alertSuccess = true;
+      // setTimeout(function() {
+      //   self.alertSuccess = false;
+      // }, 3000);
+    },
+    addToBasket(data, instrument, $event) {
+      var self = this;
+      if (!$event.target.innerText) {
+        this.alert = true;
+        // this.alert = false;
+        setTimeout(function() {
+          self.alert = false;
+        }, 3000);
+        $event.target.classList.add("red btn");
+        console.log($event.target);
+        setTimeout(function() {
+          $event.target.classList.remove("red btn");
+          console.log($event.target);
+        }, 500);
+      } else {
+        var options = {
+          productName: instrument,
+          gas: data.name,
+          details: $event.target.innerText,
+          ordNum: 1,
+          type: "instrument",
+          stylesheet: " "
+        };
+
+        this.$store.dispatch("addToCart", options);
+        this.alertSuccess = true;
+        setTimeout(function() {
+          self.alertSuccess = false;
+        }, 3000);
+      }
 
       // Store to Vuex cart
       // this.$store.dispatch("addToCart", {
@@ -251,6 +389,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+table.table {
+  // background: #eee !important;
+  color: #575758;
+}
+.alert-wrapper {
+  min-height: 65px;
+}
 span {
   display: block;
 }
@@ -265,7 +410,7 @@ img {
   max-width: 65px;
 }
 tr {
-  font-weight: 800;
+  // font-weight: 800;
 }
 
 tr.ammonia {
@@ -279,5 +424,81 @@ tr td:hover {
   // opacity: 0.5;
   // background-color: darken($color: "", $amount: 10);
   cursor: pointer;
+}
+
+.red btn {
+  margin: 0 !important;
+  background: #c20e1a;
+}
+.gray {
+  background: lightgrey;
+}
+// responsive
+.instuments-table-name {
+  display: block;
+  text-align: center;
+  width: 33%;
+}
+
+.instruments-table__content {
+  padding: 0.5em;
+  display: flex;
+  justify-content: space-between;
+  background: #eee;
+}
+.instruments-table__content__button {
+  width: 33%;
+  display: flex;
+  justify-content: flex-end;
+}
+.instuments-table__gas {
+  width: 33%;
+}
+@media only screen and (min-width: 992px) {
+  .instruments-table--responsive {
+    display: none;
+  }
+}
+@media only screen and (max-width: 425px) {
+  .instruments-table__content {
+    padding: 0.5em;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    // border-bottom: 1px solid #585857;
+    flex-direction: column;
+  }
+  .instuments-table-name {
+    display: block;
+    text-align: center;
+    width: 50%;
+    text-align: center;
+  }
+  .instruments-table__content__button {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+  }
+  .instuments-table__gas {
+    width: 100%;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .instruments-table--responsive img {
+    display: block;
+    margin: auto;
+  }
+  h3 {
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  table.table {
+    display: none;
+  }
 }
 </style>

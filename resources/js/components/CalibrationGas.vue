@@ -39,7 +39,7 @@
       </div>
 
       <div class="col-md-5">
-        <!-- <img src="../assets/img/spancan.jpg" alt /> -->
+        <img src="/img/spancan.jpg" alt />
       </div>
     </div>
 
@@ -59,7 +59,7 @@
         </ul>
       </div>
       <div class="col-md-5">
-        <!-- <img src="../assets/img/portagas.jpg" alt fluid /> -->
+        <img src="/img/portagas.jpg" alt fluid />
       </div>
     </div>
 

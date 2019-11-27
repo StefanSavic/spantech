@@ -4,8 +4,16 @@
       Your enquiry basket
       <span v-if="devices.length <= 0">is currently empty</span>
     </h1>
-    <h3>Feel free to send us an enquiry</h3>
+    <h3 v-if="devices.length <= 0">Feel free to send us an enquiry</h3>
     <!-- {{product[0]}} -->
+    <div class="alert-wrapper">
+      <div
+        v-if="alert"
+        class="alert red fade show"
+        role="alert"
+      >We are sorry, your enquiry didn't get sent, email us spantech@spantech.com</div>
+      <div v-if="alertSuccess" class="alert alert-success m-0" role="alert">Enquiry sent</div>
+    </div>
     <table v-if="devices.length > 0" class="table table-bordered table-hover">
       <thead>
         <tr>
@@ -14,7 +22,7 @@
           <th scope="col">Type</th>
           <th scope="col">Gas</th>
           <th scope="col">Details / Source</th>
-          <th scope="col">Stylesheet</th>
+          <th scope="col">Datasheet</th>
           <th scope="col">Quantity</th>
           <th scope="col">Remove</th>
         </tr>
@@ -22,12 +30,12 @@
       <tbody>
         <tr v-for="(device,i) in devices" :key="i">
           <td scope="col" class="text-capitalize">{{device.productName}}</td>
-          <td scope="col" class="text-capitalize">{{device.manufac}}</td>
+          <td scope="col" class="text-capitalize">{{device.manufacturer}}</td>
           <td scope="col" class="text-capitalize">{{device.type}}</td>
           <td scope="col" class="text-capitalize">{{device.gas}}</td>
           <td scope="col" class="text-capitalize">{{device.details}}</td>
           <td scope="col">
-            <a :href="device.link">{{device.link}}</a>
+            <a target="_blank" v-if="device.link  " :href="device.link">Datasheet</a>
           </td>
 
           <td>
@@ -52,7 +60,7 @@
         ></textarea>
       </div>
       <!-- {{resetData}} -->
-      <h1 class="my-3">Your informations</h1>
+      <h1 class="my-3">Your information</h1>
       <hr />
       <div class="form-group">
         <label for="name">Name</label>
@@ -93,6 +101,28 @@
           class="form-text text-muted"
         >We'll never share your email with anyone else.</small>
       </div>
+      <div class="form-group">
+        <label for="company">Company</label>
+        <input
+          required
+          type="text"
+          class="form-control"
+          id="company"
+          placeholder="Company"
+          v-model="customer.company"
+        />
+      </div>
+      <div class="form-group">
+        <label for="location">Location</label>
+        <input
+          required
+          type="text"
+          class="form-control"
+          id="location"
+          placeholder="Location"
+          v-model="customer.location"
+        />
+      </div>
       <div v-if="error" class="notification">{{error}}</div>
       <button class="btn red">submit</button>
     </form>
@@ -107,11 +137,15 @@ export default {
       customer: {
         name: "",
         lastName: "",
-        email: ""
+        email: "",
+        company: "",
+        location: ""
       },
       error: "",
       enquiry: this.$store.getters.gasCylindersEnquiry,
-      resetData: false
+      resetData: false,
+      alert: false,
+      alertSuccess: false
     };
   },
 
@@ -138,10 +172,16 @@ export default {
         .then(function(response) {
           console.log(response);
           // console.log(self);
+          self.alertSuccess = true;
+          setTimeout(function() {
+            self.alertSuccess = false;
+          }, 3000);
           self.reset();
           // console.log(this.rese);
         })
-        .catch(function(error) {});
+        .catch(function(error) {
+          self.error = error;
+        });
     },
 
     reset() {

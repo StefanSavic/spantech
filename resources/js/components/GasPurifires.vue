@@ -31,7 +31,7 @@
         </ul>
       </div>
       <div class="col-md-6">
-        <!-- <img src="../assets/img/gas-purifier.png" alt /> -->
+        <img src="/img/gas-purifier.png" alt />
       </div>
     </div>
 
@@ -67,6 +67,7 @@
 		<span>name</span>
 		<span>name</span>
     </div>-->
+    <div v-if="alertSuccess" class="alert alert-success" role="alert">Product is in the basket</div>
     <ul class="s-list">
       <li class="s-list-item" v-for="(i,index) in instruments" :key="index">
         <span>{{i.productName}}</span>
@@ -171,11 +172,13 @@ export default {
         "Removes impurities of O2, N2, H2, CO, CO2, H2O and Hydrocarbons",
         `Inside of the MP-2000 showing the 2 catalyst (getter) tubes, molecular sieve and heater, a simple classical use of 
 				hemistry to save the user thousands of USD a year in UHP gas costs`
-      ]
+      ],
+      alertSuccess: false
     };
   },
   methods: {
     addToCart(data) {
+      var self = this;
       console.log(data);
       this.$store.dispatch("addToCart", {
         productName: data.productName,
@@ -183,6 +186,10 @@ export default {
         type: data.class,
         SKU: data.SKU
       });
+      this.alertSuccess = true;
+      setTimeout(function() {
+        self.alertSuccess = false;
+      }, 3000);
     }
   },
 
@@ -205,7 +212,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .highlights {
   // background: red;
   list-style-type: disc !important;

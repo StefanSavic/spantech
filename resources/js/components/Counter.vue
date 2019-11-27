@@ -58,6 +58,12 @@ export default {
 </script>
 
 <style lang="scss">
+@media only screen and (max-width: 768px) {
+  .sensor .counter {
+    justify-content: flex-start;
+    margin-top: 10px;
+  }
+}
 .counter {
   display: flex;
   justify-content: center;

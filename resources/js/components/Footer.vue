@@ -8,7 +8,7 @@
     </div>
 
     <div class="spantech-footer">
-      <h5>Copyright &copy; 2018 Spantech</h5>
+      <h5>Copyright &copy; 2019 Spantech</h5>
     </div>
   </div>
 </template>
@@ -54,12 +54,14 @@ export default {
 }
 .spantech-footer-wrapp {
   overflow: hidden;
+  background: #585857;
+  color: white;
   p {
     font-size: 12px;
   }
-  -webkit-box-shadow: 1px 0 10px 0 #585857;
-  -moz-box-shadow: 1px 0 10px 0 #585857;
-  box-shadow: 1px 0 10px 0 #585857;
+  // -webkit-box-shadow: 1px 0 5px 0 #585857;
+  // -moz-box-shadow: 1px 0 5px 0 #585857;
+  // box-shadow: 1px 0 5px 0 #585857;
 
   .info {
     text-align: left;
@@ -77,14 +79,18 @@ export default {
   // background:#585857;
   // background:white;
   // color:white;
-  color: #585857;
+  // color: #585857;
   display: flex;
   align-items: center;
   justify-content: center;
+  // border-top: 1px solid #585857;
   // border: 1px solid #585857;
-  -webkit-box-shadow: 1px 0 10px 0 #585857;
-  -moz-box-shadow: 1px 0 10px 0 #585857;
-  box-shadow: 1px 0 10px 0 #585857;
+  // -webkit-box-shadow: 1px 0 10px 0 #585857;
+  // -moz-box-shadow: 1px 0 10px 0 #585857;
+  // box-shadow: 1px 0 10px 0 #585857;
+  -webkit-box-shadow: 1px 0 1px 0 #585857;
+  -moz-box-shadow: 1px 0 1px 0 #585857;
+  box-shadow: 1px 0 1px 0 #585857;
 }
 </style>
 

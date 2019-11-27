@@ -8,13 +8,13 @@
       >{{images[activeImage].text}}</article>
       <img width="100%" class="m-auto current-image" :src="'/img/caroucel/' + currentImage" />
       <!-- </transition> -->
-      <div>
+      <!-- <div>
         <a
           :href="'/' + images[activeImage].btnText"
           class="btn red text-capitalize"
           v-if="images[activeImage].btnText"
         >{{images[activeImage].btnText | noDash}}</a>
-      </div>
+      </div>-->
 
       <!-- <div class="caroucel-container__indicators">
         <button
@@ -61,21 +61,21 @@ export default {
       document.querySelector(".current-image").classList.add("fade");
       setTimeout(() => {
         document.querySelector(".current-image").classList.remove("fade");
-      }, 700);
+      }, 500);
     },
     // showElement(elementIndex) {
     //   this.activeImage = elementIndex;
     //   document.querySelector(".current-image").classList.add("fade");
     //   setTimeout(() => {
     //     document.querySelector(".current-image").classList.remove("fade");
-    //   }, 700);
+    //   }, 500);
     //   this.caroucelStop();
     //   this.caroucelStart();
     // },
     caroucelStart() {
       this.myInterval = setInterval(() => {
         this.next();
-      }, 7000);
+      }, 3000);
     },
     close() {
       this.modal = false;
@@ -93,7 +93,7 @@ export default {
           active = 0;
         }
         this.openModal($event, active);
-      }, 700);
+      }, 500);
       // document.querySelector('.current-image').classList.add('fadeOut');
     },
     prev($event) {
@@ -244,15 +244,18 @@ export default {
   /*flex: 20%;*/
   /*display: flex;*/
 }
-.caroucel-container img {
-  border-radius: 5px;
-  max-width: 522px;
-  width: 60%;
-  margin: 0 auto;
-  min-height: 365px;
-  // max-height: 500px;
-  // box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
-  //   0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+
+@media only screen and (min-width: 1024px) {
+  .caroucel-container img {
+    border-radius: 5px;
+    max-width: 522px;
+    width: 60%;
+    margin: 0 auto;
+    min-height: 365px;
+    // max-height: 500px;
+    // box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+    //   0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  }
 }
 .prev {
   position: absolute;

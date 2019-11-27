@@ -28,10 +28,25 @@ import store from './store/store'
 
 import VueRouter from 'vue-router'
 
+// vue-fontawsome
+
+import {
+    library
+} from '@fortawesome/fontawesome-svg-core'
+import {
+    FontAwesomeIcon
+} from '@fortawesome/vue-fontawesome'
+import {
+    faShoppingBasket
+} from '@fortawesome/free-solid-svg-icons'
+import {
+    faSearch
+} from '@fortawesome/free-solid-svg-icons'
 
 
-
-Vue.use(VueRouter)
+Vue.use(VueRouter);
+library.add(faShoppingBasket);
+library.add(faSearch);
 
 const routes = [
     // {
@@ -57,6 +72,7 @@ const router = new VueRouter({
 // const app = new Vue({
 //     router
 // }).$mount('#app')
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('homepage', require('./components/Homepage.vue').default);
@@ -72,6 +88,7 @@ Vue.component('gas-instrument', require('./components/GasInstrument.vue').defaul
 Vue.component('calibration-gas', require('./components/CalibrationGas.vue').default);
 Vue.component('footer-spantech', require('./components/Footer.vue').default);
 
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -81,5 +98,6 @@ Vue.component('footer-spantech', require('./components/Footer.vue').default);
 const app = new Vue({
     el: '#app',
     router,
-    store
+    store,
+
 });

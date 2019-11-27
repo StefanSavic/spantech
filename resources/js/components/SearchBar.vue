@@ -1,7 +1,7 @@
 <template>
   <div class="search-bar">
-    <div class="search-wrapper m-auto">
-      <font-awesome-icon icon="search" />
+    <div class="search-wrapper">
+      <font-awesome-icon class="search-ico" icon="search" />
       <input
         type="text"
         placeholder="Search"
@@ -22,9 +22,9 @@
         >
           <a :href="'/gas-sensors/'+ result.gas">
             <span class="text-left">{{result.productName}}</span>
-            <span>{{result.gas}}</span>
+            <span class="text-center">{{result.gas}}</span>
             <span v-if="result.instrument">{{result.instrument}}</span>
-            <span>{{result.SKU | sku }}</span>
+            <span class="text-right">{{result.SKU | sku }}</span>
             <!-- <span>
               <img class="device-img" :src="result.img" alt />
             </span>
@@ -237,6 +237,7 @@ export default {
       //   });
     },
     handleClickOutside(evt) {
+      // console.log("click");
       if (!this.$el.contains(evt.target)) {
         this.isOpen = false;
         this.arrowCounter = -1;
@@ -259,6 +260,7 @@ export default {
     }
   },
   mounted() {
+    console.log(document.window);
     // console.log(this.listOfDevices.filter(d => d.instrument == "CAL2000"));
     document.addEventListener("click", this.handleClickOutside);
     // console.log("search:",this.$store.getters.sirical)
@@ -267,6 +269,10 @@ export default {
     document.removeEventListener("click", this.handleClickOutside);
   },
   beforeMount() {
+    document.addEventListener("click", this.handleClickOutside);
+    // document.addEventListener("click", function() {
+    //   console.log("click");
+    // });
     this.getDevices();
   },
 
@@ -280,4 +286,39 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+ul {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 2px;
+}
+input {
+  // transform: translateX(7%);
+  border: 1px solid #585857;
+  border-radius: 2px;
+  // background: ghostwhite;
+  color: #585857;
+}
+input:hover,
+input:focus {
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+  border-color: #c20e1a;
+}
+
+@media only screen and (max-width: 424px) {
+  input {
+    margin-top: 1em;
+  }
+}
+@media only screen and (min-width: 992px) {
+  .search-wrapper {
+    margin: 0 auto;
+  }
+}
+@media only screen and (min-width: 1204px) {
+  .search-ico {
+    // transform: translateX(56px);
+  }
+  input {
+    // transform: translateX(8%);
+  }
+}
 </style>

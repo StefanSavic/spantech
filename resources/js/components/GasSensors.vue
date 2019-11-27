@@ -5,11 +5,20 @@
       <h1>Gas Sensors</h1>
     </div>
     <div class="col-xl-12">
-      <ul>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia facere culpa est amet consequatur cum porro fuga! Dolorum, nulla fugiat.</p>
+    </div>
+    <div class="col-xl-12 spantech-container__gases-link">
+      <a
+        v-for="(gas,i) in gases"
+        v-bind:key="i"
+        class="btn red"
+        :href="'/gas-sensors' + '/' + gas.name"
+      >{{gas.name}}</a>
+      <!-- <ul>
         <li v-for="(gas,i) in gases" v-bind:key="i">
           <a class :href="'/gas-sensors' + '/' + gas.name">{{gas.name}}</a>
         </li>
-      </ul>
+      </ul>-->
     </div>
   </div>
 </template>
@@ -35,6 +44,15 @@ export default {
 h1 {
   font-weight: 300;
 }
+
+@media only screen and (max-width: 703px) {
+  .spantech-container__gases-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
 .spantech-container {
   display: flex;
   flex-wrap: wrap;
@@ -43,20 +61,24 @@ h1 {
     // display: inline;
   }
   a {
-    width: 300px;
+    // width: 250px;
+    width: 312px;
     height: auto;
     margin: 5px;
     text-align: center;
     padding: 10px;
     font-size: 18px;
-    color: #505354;
+    // color: #505354;
     text-transform: uppercase;
     height: auto;
     margin: 5px;
     font-weight: 600px;
+    border: 1px solid #c20e1a;
     &:hover {
       text-decoration: none;
       color: #c20e1a;
+
+      background: white !important;
     }
   }
 
